@@ -8,12 +8,13 @@ import uuid
 app = Flask(__name__)
 
 @app.post('/api/client')
+#function gets called on api request
 def create_user():
    try:
-         #calls the function in api_helper to loop through the information sent
+      #calls the function in api_helper to loop through the information sent
          error=api_helper.check_endpoint_info(request.json, ['username', 'password']) 
          if(error !=None):
-            return 'something went wrong'
+            return make_response(jsonify(error), 400)
          #calls the proceedure to insert sent information into the DB
          results = dbhelper.run_proceedure('CALL create_user(?, ?)', [request.json.get('username'), request.json.get('password')])
          #returns results from db run_proceedure
@@ -21,20 +22,23 @@ def create_user():
             return make_response(jsonify(results), 200)
          else:
             return make_response(jsonify('something how gone wrong'), 500)
-      #error catching
+
    except TypeError:
       print('Invalid entry, try again')
-   except ValueError:
-      print('Value outside range, try again')
+      
+   except: 
+      print("something went wrong")
+
       
       
 @app.post('/api/login')
+#function gets called on api request
 def login():
    try:
-         #calls the function in api_helper to loop through the information sent
+      #calls the function in api_helper to loop through the information sent
          error=api_helper.check_endpoint_info(request.json, ['username', 'password']) 
          if(error !=None):
-            return 'something went wrong'
+            return make_response(jsonify(error), 400)
          token = uuid.uuid4().hex
          #calls the proceedure to insert sent information into the DB
          results = dbhelper.run_proceedure('CALL login_proc(?, ?, ?)', [request.json.get('username'), request.json.get('password'), token])
@@ -43,23 +47,23 @@ def login():
             return make_response(jsonify(results), 200)
          else:
             return make_response(jsonify(results), 500)
-   #error catching
-   
+
    except TypeError:
       print('Invalid entry, try again')
-   except ValueError:
-      print('Value outside range, try again')
-      
+
+   except: 
+      print("something went wrong")   
       
       
       
 @app.post('/api/post') 
+#function gets called on api request
 def post():
    try:
-         #calls the function in api_helper to loop through the information sent
+      #calls the function in api_helper to loop through the information sent
          error=api_helper.check_endpoint_info(request.json, ['token', 'content']) 
          if(error !=None):
-            return 'something went wrong'
+            return make_response(jsonify(error), 400)
          #calls the proceedure to insert sent information into the DB
          results = dbhelper.run_proceedure('CALL create_post(?, ?)', [request.json.get('token'), request.json.get('content')])
          #returns results from db run_proceedure
@@ -67,15 +71,13 @@ def post():
             return make_response(jsonify(results), 200)
          else:
             return make_response(jsonify(results), 500)
-   #error catching
+
 
    except TypeError:
       print('Invalid entry, try again')
-   except ValueError:
-      print('Value outside range, try again')
+   except: 
+      print("something went wrong")        
       
-         
-         
             
          
 
