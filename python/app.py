@@ -89,8 +89,8 @@ def del_post():
          #calls the proceedure to delete information from the DB using what has been sent
          results = dbhelper.run_proceedure('CALL delete_post(?, ?)', [request.json.get('postid'), request.json.get('token')])
          #returns results from db run_proceedure
-         
-         if(type(results) == list and results[0][0] == 1):
+         print(results)
+         if(type(results) == list):
             return make_response(jsonify(results), 200)
          else:
             return make_response(jsonify(results), 500)
