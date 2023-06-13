@@ -84,7 +84,7 @@ CREATE TABLE `post` (
   PRIMARY KEY (`id`),
   KEY `post_FK` (`client_id`),
   CONSTRAINT `post_FK` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `post` (
 
 LOCK TABLES `post` WRITE;
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
-INSERT INTO `post` VALUES (7,1,'this is content','2023-06-12');
+INSERT INTO `post` VALUES (11,1,'this is content','2023-06-12'),(12,1,'this is content','2023-06-12'),(13,1,'this is content','2023-06-12'),(14,1,'this is content','2023-06-12'),(15,1,'this is content','2023-06-12'),(16,1,'this is content','2023-06-12'),(17,1,'this is content','2023-06-12'),(18,1,'this is content','2023-06-12'),(19,1,'this is content','2023-06-12'),(20,1,'this is content','2023-06-12'),(21,1,'this is content','2023-06-12'),(22,1,'this is content','2023-06-12'),(23,1,'this is content','2023-06-12'),(24,1,'this is content','2023-06-12');
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,4 +202,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-12 18:49:24
+-- Dump completed on 2023-06-12 18:52:20
