@@ -18,7 +18,7 @@ def run_proceedure(sql, args):
         cursor = conn.cursor()
         cursor.execute(sql, args)
         results = cursor.fetchall()
-        results = convert_data(cursor, results)
+
         #catching errors and diagnosing them
     except mariadb.ProgrammingError as error:
         print('There is an issue with the DB code: ', error)

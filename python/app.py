@@ -79,7 +79,28 @@ def post():
       print("something went wrong")        
       
             
+@app.delete('/api/post')      
+def del_post():
+   try:
+      #calls the function in api_helper to loop through the information sent
+         error=api_helper.check_endpoint_info(request.json, ['postid','token']) 
+         if(error !=None):
+            return make_response(jsonify(error), 400)
+         #calls the proceedure to delete information from the DB using what has been sent
+         results = dbhelper.run_proceedure('CALL delete_post(?, ?)', [request.json.get('postid'), request.json.get('token')])
+         #returns results from db run_proceedure
          
+         if(type(results) == list and results[0][0] == 1):
+            return make_response(jsonify(results), 200)
+         else:
+            return make_response(jsonify(results), 500)
+
+
+
+   except TypeError:
+      print('Invalid entry, try again')
+   except: 
+      print("something went wrong")           
 
          
 #running @app
