@@ -21,7 +21,7 @@ def create_user():
          if(type(results) == list):
             return make_response(jsonify(results), 200)
          else:
-            return make_response(jsonify('something how gone wrong'), 500)
+            return make_response(jsonify('something has gone wrong'), 500)
 
    except TypeError:
       print('Invalid entry, try again')
